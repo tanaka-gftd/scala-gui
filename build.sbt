@@ -27,3 +27,9 @@ libraryDependencies += "org.openjfx" % "javafx-controls" % "11-ea+25" classifier
 libraryDependencies += "org.openjfx" % "javafx-fxml" % "11-ea+25" classifier osName.value
 libraryDependencies += "org.openjfx" % "javafx-graphics" % "11-ea+25" classifier osName.value
 libraryDependencies += "org.openjfx" % "javafx-web" % "11-ea+25" classifier osName.value
+
+//作成したアプリケーションを、単一のファイルとして配布できるような形でビルド(=jarファイルとして、単一ファイルにまとめる形でビルド)
+assembly / assemblyMergeStrategy := {
+    case PathList("module-info.class") => MergeStrategy.first
+    case x => (assembly / assemblyMergeStrategy).value(x)
+}
